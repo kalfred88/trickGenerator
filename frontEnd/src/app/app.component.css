@@ -1,0 +1,7 @@
+section {
+  margin-top: 40px;
+}
+
+.trickDisplay p:first-of-type {
+  font-weight: 700;
+}

@@ -1,0 +1,71 @@
+.container
+  .row
+    .col-12
+      form(action="localhost:3000/tricks" method="post")
+      table.table.table-striped.table-bordered
+        thead
+          tr
+            th Trick name
+            th Description
+            th Difficulty
+            th Video link
+            th Created at
+            th(colspan="2") Updated at
+        tbody
+          tr
+            td
+              input.form-control(type="text", name="trickname" ,[(ngModel)]="newTrick.trickname")
+            td
+              input.form-control(type="text", name="description", [(ngModel)]="newTrick.description")
+            td
+              select#difficulty.form-control(name="difficulty",[(ngModel)]="newTrick.difficulty")
+                option(value="easy") Easy
+                option(value="medium") Medium
+                option(value="hard") Hard
+                option(value="veryhard") Very hard
+                option(value="extreme") Extreme
+            td
+              input.form-control(type="text", name="link" ,[(ngModel)]="newTrick.link")
+            td(colspan="3")
+              button.btn.btn-dark.form-control(type="button" ,(click)="addTrick()") Add Trick
+          tr(*ngFor="let trick of tricks")
+            td {{trick.trickname}}
+            td {{trick.description}}
+            td {{trick.difficulty}}
+            td {{trick.link}}
+            td {{trick.createdAt}}
+            td {{trick.updatedAt}}
+            td
+              .btn-group
+                button.btn.btn-danger.form-control(type="button" ,(click)="deleteTrick(trick._id)") Delete
+                button.btn.btn-info.form-control(type="button" data-toggle="modal" data-target="#exampleModal", (click)="modal(trick._id)") Update
+
+      // Button trigger modal
+    //button.btn.btn-primary(type="button" data-toggle="modal" data-target="#exampleModal")
+      | Launch demo modal
+    // Modal
+    #exampleModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title Todo
+            button.close(type="button" data-dismiss="modal" aria-label="Close")
+              span(aria-hidden="true") ×
+          .modal-body
+              label(for="id") ID
+              input.form-control(type="text", name="id", id="id", disabled ,[(ngModel)]="newerTrick._id")
+              br
+              label(for="trickname") Trickname
+              input.form-control(type="text", name="trickname", id="trickname" ,[(ngModel)]="newerTrick.trickname")
+              br
+              label(for="description") Description
+              input.form-control(type="text", name="description", id="description" ,[(ngModel)]="newerTrick.description")
+              br
+              label(for="difficulty") Difficulty
+              input.form-control(type="text", name="difficulty", id="difficulty" ,[(ngModel)]="newerTrick.difficulty")
+              br
+              label(for="link") Video link
+              input.form-control(type="text", name="link", id="link" ,[(ngModel)]="newerTrick.link")
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-dismiss="modal") Close
+            button.btn.btn-primary(type="button", data-dismiss="modal" ,(click)="updateTrick()") Save changes

@@ -1,0 +1,32 @@
+app-nav
+section
+	.container
+		.row
+			.col-12.text-center
+				.trickGenerator
+					.form-check.form-check-inline
+						input#checkEasy.form-check-input(type="checkbox" class="difficulty" value="easy" checked)
+						label.form-check-label(for="checkEasy") Easy
+					.form-check.form-check-inline
+						input#checkMedium.form-check-input(type="checkbox" class="difficulty" value="medium")
+						label.form-check-label(for="checkMedium") Medium
+					.form-check.form-check-inline
+						input#checkHard.form-check-input(type="checkbox" class="difficulty" value="hard")
+						label.form-check-label(for="checkHard") Hard
+					.form-check.form-check-inline
+						input#checkVeryHard.form-check-input(type="checkbox" class="difficulty" value="veryhard")
+						label.form-check-label(for="checkVeryHard") Very hard
+					.form-check.form-check-inline
+						input#checkExtreme.form-check-input(type="checkbox" class="difficulty" value="extreme")
+						label.form-check-label(for="checkExtreme") Extreme
+					button.btn.btn-dark(type="button" ,(click)="getRandom()") Generate Trick
+					//button.btn.btn-dark(type="button" ,(click)="getDifficulties()") Generate Diffs
+		.row
+			.col-12.text-center
+				.trickDisplay
+					p {{randomTrick.stance +" "+ randomTrick.trickname}}
+					p {{randomTrick.description}}
+					iframe(width="560", height="315", [src]="ytLink | safe", frameborder="0", allow="autoplay; encrypted-media", allowfullscreen="")
+					//iframe(width="100%" height="300" [src]="ytLink | safe")
+section(*ngIf="service.loggedIn")
+	app-home

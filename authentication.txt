@@ -1,0 +1,4 @@
+https://auth0.com/blog/cookies-vs-tokens-definitive-guide/
+https://stackoverflow.com/questions/40200413/sessions-vs-token-based-authentication
+https://www.djamware.com/post/5a878b3c80aca7059c142979/securing-mean-stack-angular-5-web-application-using-passport
+
